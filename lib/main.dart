@@ -37,6 +37,9 @@ class _UTipState extends State<UTip> {
     print(context.widget); //出力：UTip
     var theme =
         Theme.of(context); //テーマが添付されている最も近いウィジェットのテーマを取得して、それを変数themeに格納して使用
+    final style = theme.textTheme.titleMedium!.copyWith(
+        color: theme.colorScheme.onPrimary, fontWeight: FontWeight.bold);
+
     return Scaffold(
         appBar: AppBar(
           title: const Text('UTip'),
@@ -54,8 +57,11 @@ class _UTipState extends State<UTip> {
                 children: [
                   Text("Total per person",
                       //Theme基準から文字サイズ使用
-                      style: theme.textTheme.titleMedium),
-                  Text("\$price 円", style: theme.textTheme.displaySmall)
+                      style: style),
+                  Text("\$price 円",
+                      style: style.copyWith(
+                          color: theme.colorScheme.onPrimary,
+                          fontSize: theme.textTheme.displaySmall?.fontSize))
                 ],
               ),
             )
