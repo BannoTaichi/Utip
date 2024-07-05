@@ -80,15 +80,18 @@ class _UTipState extends State<UTip> {
               ),
               child: Column(
                 children: [
-                  TextField(
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        prefixIcon: Icon(Icons.attach_money),
-                        labelText: "Bill Amount"),
-                    keyboardType: TextInputType.number,
-                    onChanged: (String value) {
-                      print("Value: $value");
-                    },
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: TextField(
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          prefixIcon: Icon(Icons.attach_money),
+                          labelText: "Bill Amount"),
+                      keyboardType: TextInputType.number,
+                      onChanged: (String value) {
+                        print("Value: $value");
+                      },
+                    ),
                   ),
                 ],
               ),
