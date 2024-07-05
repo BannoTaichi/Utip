@@ -41,13 +41,15 @@ class _UTipState extends State<UTip> {
         color: theme.colorScheme.onPrimary, fontWeight: FontWeight.bold);
 
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('UTip'),
-        ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Container(
+      appBar: AppBar(
+        title: const Text('UTip'),
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: Container(
               padding: const EdgeInsets.all(18),
               decoration: BoxDecoration(
                   // Theme基準で色使用
@@ -64,8 +66,36 @@ class _UTipState extends State<UTip> {
                           fontSize: theme.textTheme.displaySmall?.fontSize))
                 ],
               ),
-            )
-          ],
-        ));
+            ),
+          ),
+          //Form
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              width: 100,
+              height: 100,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                border: Border.all(color: theme.colorScheme.primary, width: 2),
+              ),
+              child: Column(
+                children: [
+                  TextField(
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        prefixIcon: Icon(Icons.attach_money),
+                        labelText: "Bill Amount"),
+                    keyboardType: TextInputType.number,
+                    onChanged: (String value) {
+                      print("Value: $value");
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
