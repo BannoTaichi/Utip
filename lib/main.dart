@@ -32,6 +32,23 @@ class UTip extends StatefulWidget {
 }
 
 class _UTipState extends State<UTip> {
+  int _personCount = 1;
+
+  //Methods
+  void increment() {
+    setState(() {
+      _personCount++;
+    });
+  }
+
+  void decrement() {
+    setState(() {
+      if (_personCount > 0) {
+        _personCount--;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     print(context.widget); //出力：UTip
@@ -73,7 +90,7 @@ class _UTipState extends State<UTip> {
             padding: const EdgeInsets.all(8.0),
             child: Container(
               width: 100,
-              height: 100,
+              height: 300,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
                 border: Border.all(color: theme.colorScheme.primary, width: 2),
@@ -89,6 +106,30 @@ class _UTipState extends State<UTip> {
                     onChanged: (String value) {
                       print("Value: $value");
                     },
+                  ),
+                  // Split Bill area
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Split",
+                        style: theme.textTheme.titleMedium,
+                      ),
+                      Row(
+                        children: [
+                          IconButton(
+                              color: theme.colorScheme.primary,
+                              onPressed: decrement,
+                              icon: Icon(Icons.remove)),
+                          Text("$_personCount",
+                              style: theme.textTheme.titleMedium),
+                          IconButton(
+                              color: theme.colorScheme.primary,
+                              onPressed: increment,
+                              icon: Icon(Icons.add)),
+                        ],
+                      ),
+                    ],
                   ),
                 ],
               ),
