@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:utip/widgets/person_counter.dart';
+import 'package:utip/widgets/tip_row.dart';
+import 'package:utip/widgets/total_per_person.dart';
 
 import 'widgets/bill_amount_field.dart';
 import 'widgets/tip_slider.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       title: 'UTip App',
       theme: ThemeData(
         colorScheme:
-            ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 0, 4, 255)),
+            ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 172, 162, 230)),
         useMaterial3: true,
       ),
       home: const UTip(),
@@ -81,27 +82,7 @@ class _UTipState extends State<UTip> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: Container(
-              padding: const EdgeInsets.all(18),
-              decoration: BoxDecoration(
-                  // Theme基準で色使用
-                  color: theme.colorScheme.inversePrimary,
-                  borderRadius: BorderRadius.circular(10.0)),
-              child: Column(
-                children: [
-                  Text("Total per person",
-                      //Theme基準から文字サイズ使用
-                      style: style),
-                  Text("$total",
-                      style: style.copyWith(
-                          color: theme.colorScheme.onPrimary,
-                          fontSize: theme.textTheme.displaySmall?.fontSize))
-                ],
-              ),
-            ),
-          ),
+          TotalPerPerson(theme: theme, style: style, total: total),
           //Form
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -139,13 +120,7 @@ class _UTipState extends State<UTip> {
                     ],
                   ),
                   // == Tip Section ==
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Tip", style: theme.textTheme.titleMedium),
-                      Text("$totalT", style: theme.textTheme.titleMedium),
-                    ],
-                  ),
+                  TipRow(theme: theme, totalT: totalT),
 
                   // == Slider Text ==
                   Text("${(_tipPercentage * 100).round()} %"),
