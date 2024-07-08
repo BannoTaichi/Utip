@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:utip/widgets/person_counter.dart';
 
+import 'widgets/tip_slider.dart';
+
 void main() {
   runApp(const MyApp());
 }
