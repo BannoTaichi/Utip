@@ -39,6 +39,15 @@ class _UTipState extends State<UTip> {
   int _personCount = 1;
 
   double _tipPercentage = 0.0;
+  double _billTotal = 0.0;
+
+  double totalPerPerson() {
+    return ((_billTotal * _tipPercentage) + (_billTotal)) / _personCount;
+  }
+
+  double totalTip() {
+    return (_billTotal * _tipPercentage);
+  }
 
   //Methods
   void increment() {
@@ -49,7 +58,7 @@ class _UTipState extends State<UTip> {
 
   void decrement() {
     setState(() {
-      if (_personCount > 0) {
+      if (_personCount > 1) {
         _personCount--;
       }
     });
@@ -60,6 +69,8 @@ class _UTipState extends State<UTip> {
     print(context.widget); //出力：UTip
     var theme =
         Theme.of(context); //テーマが添付されている最も近いウィジェットのテーマを取得して、それを変数themeに格納して使用
+    double total = totalPerPerson();
+    double totalT = totalTip();
     final style = theme.textTheme.titleMedium!.copyWith(
         color: theme.colorScheme.onPrimary, fontWeight: FontWeight.bold);
 
@@ -83,7 +94,7 @@ class _UTipState extends State<UTip> {
                   Text("Total per person",
                       //Theme基準から文字サイズ使用
                       style: style),
-                  Text("\$ price 円",
+                  Text("$total",
                       style: style.copyWith(
                           color: theme.colorScheme.onPrimary,
                           fontSize: theme.textTheme.displaySmall?.fontSize))
@@ -103,9 +114,12 @@ class _UTipState extends State<UTip> {
               child: Column(
                 children: [
                   BillAmountField(
-                    billAmount: "100",
+                    billAmount: _billTotal.toString(),
                     onChanged: (value) {
-                      print("Amount: $value");
+                      setState(() {
+                        _billTotal = double.parse(value);
+                      });
+                      // print("Amount: $value");
                     },
                   ),
                   // Split Bill area
@@ -129,7 +143,7 @@ class _UTipState extends State<UTip> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text("Tip", style: theme.textTheme.titleMedium),
-                      Text("\$ tip 円", style: theme.textTheme.titleMedium),
+                      Text("$totalT", style: theme.textTheme.titleMedium),
                     ],
                   ),
 
