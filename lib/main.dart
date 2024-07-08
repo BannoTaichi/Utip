@@ -35,6 +35,8 @@ class UTip extends StatefulWidget {
 class _UTipState extends State<UTip> {
   int _personCount = 1;
 
+  double _tipPercentage = 0.0;
+
   //Methods
   void increment() {
     setState(() {
@@ -78,7 +80,7 @@ class _UTipState extends State<UTip> {
                   Text("Total per person",
                       //Theme基準から文字サイズ使用
                       style: style),
-                  Text("\$price 円",
+                  Text("\$ price 円",
                       style: style.copyWith(
                           color: theme.colorScheme.onPrimary,
                           fontSize: theme.textTheme.displaySmall?.fontSize))
@@ -99,7 +101,7 @@ class _UTipState extends State<UTip> {
               child: Column(
                 children: [
                   TextField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         prefixIcon: Icon(Icons.attach_money),
                         labelText: "Bill Amount"),
@@ -124,6 +126,31 @@ class _UTipState extends State<UTip> {
                       ),
                     ],
                   ),
+                  // == Tip Section ==
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("Tip", style: theme.textTheme.titleMedium),
+                      Text("\$ tip 円", style: theme.textTheme.titleMedium),
+                    ],
+                  ),
+
+                  // == Slider Text ==
+                  Text("${(_tipPercentage * 100).round()} %"),
+
+                  // == Tip Slider ==
+                  Slider(
+                    value: _tipPercentage,
+                    onChanged: (value) {
+                      setState(() {
+                        _tipPercentage = value;
+                      });
+                    },
+                    min: 0.0,
+                    max: 0.5,
+                    divisions: 5,
+                    label: "${(_tipPercentage * 100).round()} %",
+                  )
                 ],
               ),
             ),
