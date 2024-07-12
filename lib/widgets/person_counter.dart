@@ -22,12 +22,12 @@ class PersonCounter extends StatelessWidget {
         IconButton(
             color: theme.colorScheme.primary,
             onPressed: onDecrement,
-            icon: Icon(Icons.remove)),
+            icon: const Icon(Icons.remove)),
         Text("$_personCount", style: theme.textTheme.titleMedium),
         IconButton(
             color: theme.colorScheme.primary,
             onPressed: onIncrement,
-            icon: Icon(Icons.add)),
+            icon: const Icon(Icons.add)),
       ],
     );
   }

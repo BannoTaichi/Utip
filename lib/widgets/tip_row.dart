@@ -16,7 +16,7 @@ class TipRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text("Tip", style: theme.textTheme.titleMedium),
-        Text("${totalT.toStringAsFixed(2)}",
+        Text(totalT.toStringAsFixed(2),
             style: theme.textTheme.titleMedium),
       ],
     );

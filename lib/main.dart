@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       title: 'UTip App',
       theme: ThemeData(
         colorScheme:
-            ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 172, 162, 230)),
+            ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 172, 162, 230)),
         useMaterial3: true,
       ),
       home: const UTip(),
